@@ -17,13 +17,15 @@ const navCategory = (categories) => {
         const catNav = document.createElement('li')
         catNav.innerHTML = `
         <li class="nav-item" onclick ="newsByCategory('${categorie.category_id}','${categorie.category_name}')">
-                                <a class="nav-link  fs-5 pe-4" aria-current="page" href="#">${categorie.category_name}</a>
+                                <a  class="nav-link  fs-5 pe-4" aria-current="page" href="#">${categorie.category_name}</a>
                             </li>
                             `
         categorieList.appendChild(catNav)
     });
 }
 const newsByCategory = async (category_id,categorie_name) => {
+    
+    
     toggleSpinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     try {
