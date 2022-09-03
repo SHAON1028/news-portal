@@ -130,6 +130,20 @@ const showNews = (news_infos, nameOfCategory) => {
     toggleSpinner(false)
 
 }
+const showNewsDetail = async news_id => {
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`
+    try {
+        const res = await fetch(url)
+        const data = await res.json()
+
+        newsinModal(data.data[0])
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}
+
 
 
 loadCatagories()
