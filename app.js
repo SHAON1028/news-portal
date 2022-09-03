@@ -36,7 +36,96 @@ const newsByCategory = async (category_id) => {
 
 }
 
+const showNews = (news_infos, nameOfCategory) => {
+    console.log(news_infos);
 
+   
+
+
+    //no news found
+    const noNews = document.getElementById('no-found-message')
+    if (news_infos.length === 0) {
+        noNews.classList.remove('d-none')
+    } else {
+        noNews.classList.add('d-none')
+    }
+
+    const getNewsID = document.getElementById('news-id')
+    getNewsID.innerHTML = ''
+    //total news
+    const getTotal = document.getElementById('total-news')
+    getTotal.innerHTML = ''
+    const totalDiv = document.createElement('p')
+    totalDiv.innerHTML = `
+    <p> <span class="text-primary">${news_infos.length}</span> items found for category <span class="text-primary">${nameOfCategory}</span></p> 
+    `
+    getTotal.appendChild(totalDiv)
+
+
+
+    // total news
+    news_infos.forEach(info => {
+        let name = info.author.name
+        if (name === null)
+            name = 'No Data Found'
+        let view = info.total_view
+        if (view === null)
+            view = 'No Data Found'
+        p = info.details.slice(0, 600)
+
+        const newsDiv = document.createElement('div')
+        newsDiv.innerHTML = `
+        <div class="card mb-3 p-3 w-100">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="${info.image_url}" width="320px" height="300px" class="rounded-1 " alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">${info.title}</h5>
+                    <p class="card-text">${p}...</p>
+
+                    <div class="d-lg-flex mt-5 pt-3 justify-content-between">
+                        <!-- author -->
+                        <div class=" d-flex">
+                            <img src="${info.author.img}" alt="" width="40px" height="40px" class="rounded-circle">
+                            <h5 class="ps-3">${name}</h5>
+                        </div>
+
+                        <!-- views -->
+                        <div class="d-flex">
+                            <i class="bi bi-eye " style="font-size:24px;"></i>
+                            <p class="pt-1 ps-2">${view}</p>
+                        </div>
+                        <!-- star -->
+                        <div>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <!-- details arrow -->
+                        <div>
+                            <button onclick ="showNewsDetail('${info._id}')" type="button" class="border-0 bg-white" ><i class="bi bi-arrow-right"
+                                    style="font-weight:bold;font-size:24px; color:blue;"data-bs-toggle="modal" data-bs-target="#newsDetailsModal" ></i></button>
+                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        `
+        getNewsID.appendChild(newsDiv)
+
+
+
+    });
+    toggleSpinner(false)
+
+}
 
 
 loadCatagories()
