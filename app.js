@@ -23,9 +23,9 @@ const navCategory = (categories) => {
         categorieList.appendChild(catNav)
     });
 }
-const newsByCategory = async (category_id,categorie_name) => {
-    
-    
+const newsByCategory = async (category_id, categorie_name) => {
+
+
     toggleSpinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     try {
@@ -147,8 +147,8 @@ const showNewsDetail = async news_id => {
 }
 const newsinModal = all_info => {
     let name = all_info.author.name
-        if (name === null)
-            name = 'No Data Found'
+    if (name === null)
+        name = 'No Data Found'
     const modalTitle = document.getElementById('newsDetailsModalLabel')
     modalTitle.innerHTML = all_info.title
 
