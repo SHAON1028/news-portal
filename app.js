@@ -84,7 +84,7 @@ const showNews = (news_infos, nameOfCategory) => {
         <div class="card mb-3 p-3 w-100">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="${info.image_url}" width="320px" height="300px" class="rounded-1 " alt="...">
+                <img src="${info.image_url}" width="420px" height="300px" class="rounded-1 " alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -146,7 +146,9 @@ const showNewsDetail = async news_id => {
 
 }
 const newsinModal = all_info => {
-    console.log(all_info);
+    let name = all_info.author.name
+        if (name === null)
+            name = 'No Data Found'
     const modalTitle = document.getElementById('newsDetailsModalLabel')
     modalTitle.innerHTML = all_info.title
 
@@ -161,7 +163,7 @@ const newsinModal = all_info => {
     </div>
     <div>
     <p class="fw-bold text-primary">About Author:</p>
-    <p class="fw-bold text-success">Name:${all_info.author.name}</p>
+    <p class="fw-bold text-success">Name:${name}</p>
     <p class="fw-bold text-success">published_date:${all_info.author.published_date}</p>
    
     </div>
