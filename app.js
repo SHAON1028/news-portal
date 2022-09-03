@@ -175,6 +175,15 @@ const newsinModal = all_info => {
     modalBody.appendChild(modalDiv)
 
 }
+// spiner
+const toggleSpinner = isTrue => {
+    const loading = document.getElementById('load')
+    if (isTrue === true) {
+        loading.classList.remove('d-none')
+    } else {
+        loading.classList.add('d-none')
+    }
+}
 
 
 loadCatagories()
