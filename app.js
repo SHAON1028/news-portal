@@ -39,7 +39,11 @@ const newsByCategory = async (category_id) => {
 const showNews = (news_infos, nameOfCategory) => {
     console.log(news_infos);
 
-   
+    //sort
+    news_infos.sort((a, b) => {
+        return b.total_view - a.total_view;
+    });
+    //sort end
 
 
     //no news found
