@@ -143,7 +143,38 @@ const showNewsDetail = async news_id => {
 
 
 }
+const newsinModal = all_info => {
+    console.log(all_info);
+    const modalTitle = document.getElementById('newsDetailsModalLabel')
+    modalTitle.innerHTML = all_info.title
 
+    const modalBody = document.getElementById('news-modal')
+    modalBody.innerHTML = ''
+    const modalDiv = document.createElement('div')
+    modalDiv.innerHTML =
+        `
+    <div>
+    <p class="fw-bold text-primary">Details of the news:</p>
+    <p>${all_info.details}</p>
+    </div>
+    <div>
+    <p class="fw-bold text-primary">About Author:</p>
+    <p class="fw-bold text-success">Name:${all_info.author.name}</p>
+    <p class="fw-bold text-success">published_date:${all_info.author.published_date}</p>
+   
+    </div>
+
+    <div>
+    <p class="fw-bold text-primary">Rating:</p>
+    <p class="fw-bold text-success">Numbers:${all_info.rating.number}</p>
+    <p class="fw-bold text-success">Badge:${all_info.rating.badge}</p>
+
+    </div>
+    
+    `
+    modalBody.appendChild(modalDiv)
+
+}
 
 
 loadCatagories()
